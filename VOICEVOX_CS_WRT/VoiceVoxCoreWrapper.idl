@@ -1,0 +1,9 @@
+namespace VOICEVOX_CS_WRT
+{
+    [default_interface]
+    runtimeclass VoiceVoxCoreWrapper
+    {
+        VoiceVoxCoreWrapper(BSTR coredll_path);
+
+    }
+}

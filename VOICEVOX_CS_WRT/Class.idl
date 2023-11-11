@@ -1,9 +1,0 @@
-namespace VOICEVOX_CS_WRT
-{
-    [default_interface]
-    runtimeclass Class
-    {
-        Class();
-        Int32 MyProperty;
-    }
-}
