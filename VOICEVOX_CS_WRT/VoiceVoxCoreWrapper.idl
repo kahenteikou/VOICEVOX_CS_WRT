@@ -1,9 +1,22 @@
 namespace VOICEVOX_CS_WRT
 {
     [default_interface]
-    runtimeclass VoiceVoxCoreWrapper
+    runtimeclass VoiceVoxCoreWrapper: Windows.Foundation.IClosable
     {
-        VoiceVoxCoreWrapper(BSTR coredll_path);
-
+        VoiceVoxCoreWrapper(String coredll_path);
+        void Close();
+        Boolean InitializeCore(Boolean use_cpu, Int32 cpu_numthreads, Boolean load_allmodels);
+        VoiceVoxResult_ENUM voicevox_load_openjtalk_dict(String dpath);
+        String voicevox_error_result_to_message(VoiceVoxResult_ENUM result_code);
+        VoiceVoxResult_ENUM voicevox_tts(String text, Int64 speaker_id, Int64 output_binary_size, Int64 output_wav);
+        VoiceVoxResult_ENUM voicevox_tts_from_kana(String text, Int64 speaker_id, Int64 output_binary_size, Int64 output_wav);
+        void voicevox_free_wav(Int64 wav);
+        Boolean load_model(Int64 speaker_id);
+        Boolean is_model_loaded(Int64 speaker_id);
     }
+    enum VoiceVoxResult_ENUM {
+
+        SUCCEED = 0,
+        NOT_LOADED_OPENJTALK_DICT = 1
+    };
 }
