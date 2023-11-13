@@ -30,4 +30,8 @@
     <ProjectReference Include="..\VOICEVOX_CS_WRT\VOICEVOX_CS_WRT.vcxproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="nuget\VOICEVOX_CS_WRTProjection.nuspec" />
+  </ItemGroup>
+
 </Project>
