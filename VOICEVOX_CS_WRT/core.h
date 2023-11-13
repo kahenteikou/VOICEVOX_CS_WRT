@@ -10,3 +10,7 @@ typedef VoiceVoxResultenum(*VOICEVOX_VOICEVOXTTS)(const char* text, int64_t spea
 typedef void(*VOICEVOX_VOICEVOXTTSFREE)(uint8_t* wav);
 typedef bool(*VOICEVOX_INITIALIZE)(bool use_cpu, int cpu_num_threads, bool load_all_models);
 typedef bool(*VOICEVOX_LOADMODEL)(int64_t speaker_id);
+typedef bool(*VOICEVOX_ISMODELLOADED)(int64_t speaker_id);
+
+typedef VoiceVoxResultenum(*VOICEVOX_VOICEVOXTTSKANA)(const char* text, int64_t speaker_id, int* output_binary_size,
+	uint8_t** output_wav);

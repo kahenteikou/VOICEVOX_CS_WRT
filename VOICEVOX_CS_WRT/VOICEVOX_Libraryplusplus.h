@@ -18,8 +18,8 @@ public:
 	bool InitializeCore(bool use_cpu, int cpu_numthreads = 0, bool load_allmodels = true);
 	VoiceVoxResultenum voicevox_load_openjtalk_dict(const char* dpath);
 	const char* voicevox_error_result_to_message(VoiceVoxResultenum result_code);
-	VoiceVoxResultenum voicevox_tts(std::wstring text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav);
-	VoiceVoxResultenum voicevox_tts_from_kana(std::wstring text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav);
+	VoiceVoxResultenum voicevox_tts(std::string text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav);
+	VoiceVoxResultenum voicevox_tts_from_kana(std::string text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav);
 	void voicevox_free_wav(uint8_t* wav); 
 	bool load_model(int64_t speaker_id);
 	bool is_model_loaded(int64_t speaker_id);

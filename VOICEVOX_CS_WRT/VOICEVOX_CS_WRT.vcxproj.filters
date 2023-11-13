@@ -11,7 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="VOICEVOX_Libraryplusplus.cpp" />
   </ItemGroup>
@@ -19,6 +18,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="VOICEVOX_Libraryplusplus.h" />
+    <ClInclude Include="VoiceVoxCoreWrapper.g.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="VoiceVoxCoreWrapper.idl" />

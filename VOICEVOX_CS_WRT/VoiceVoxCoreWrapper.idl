@@ -4,7 +4,6 @@ namespace VOICEVOX_CS_WRT
     runtimeclass VoiceVoxCoreWrapper: Windows.Foundation.IClosable
     {
         VoiceVoxCoreWrapper(String coredll_path);
-        void Close();
         Boolean InitializeCore(Boolean use_cpu, Int32 cpu_numthreads, Boolean load_allmodels);
         VoiceVoxResult_ENUM voicevox_load_openjtalk_dict(String dpath);
         String voicevox_error_result_to_message(VoiceVoxResult_ENUM result_code);

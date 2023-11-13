@@ -70,6 +70,12 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DesktopCompatible>true</DesktopCompatible>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DesktopCompatible>true</DesktopCompatible>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -117,6 +123,7 @@
   <ItemGroup>
     <ClInclude Include="core.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="VoiceVoxCoreWrapper.g.h" />
     <ClInclude Include="VoiceVoxCoreWrapper.h">
       <DependentUpon>VoiceVoxCoreWrapper.idl</DependentUpon>
     </ClInclude>

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "VOICEVOX_Libraryplusplus.h"
 VOICEVOX_Libraryplusplus::VOICEVOX_Libraryplusplus(const wchar_t* coredll_path) {
 	_hmod = LoadLibrary(coredll_path);
@@ -25,13 +26,13 @@ VOICEVOX_Libraryplusplus::VoiceVoxResultenum VOICEVOX_Libraryplusplus::voicevox_
 const char* VOICEVOX_Libraryplusplus::voicevox_error_result_to_message(VoiceVoxResultenum result_code) {
 	return this->__voicevox_error_result_to_message(result_code);
 }
-VOICEVOX_Libraryplusplus::VoiceVoxResultenum VOICEVOX_Libraryplusplus::voicevox_tts(std::wstring text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav) {
-	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> cvt;
-	return this->__voicevox_tts(cvt.to_bytes(text).c_str(), speaker_id, output_binary_size, output_wav);
+VOICEVOX_Libraryplusplus::VoiceVoxResultenum VOICEVOX_Libraryplusplus::voicevox_tts(std::string text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav) {
+	//std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> cvt;
+	return this->__voicevox_tts(text.c_str(), speaker_id, output_binary_size, output_wav);
 }
-VOICEVOX_Libraryplusplus::VoiceVoxResultenum VOICEVOX_Libraryplusplus::voicevox_tts_from_kana(std::wstring text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav) {
-	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> cvt;
-	return this->__voicevox_tts_kana(cvt.to_bytes(text).c_str(), speaker_id, output_binary_size, output_wav);
+VOICEVOX_Libraryplusplus::VoiceVoxResultenum VOICEVOX_Libraryplusplus::voicevox_tts_from_kana(std::string text, int64_t speaker_id, int* output_binary_size, uint8_t** output_wav) {
+	//std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> cvt;
+	return this->__voicevox_tts_kana(text.c_str(), speaker_id, output_binary_size, output_wav);
 }
 void VOICEVOX_Libraryplusplus::voicevox_free_wav(uint8_t* wav) {
 	this->__voicevox_wav_free(wav);
