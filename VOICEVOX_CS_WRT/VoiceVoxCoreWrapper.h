@@ -30,8 +30,8 @@ namespace winrt::VOICEVOX_CS_WRT::implementation
         bool InitializeCore(bool use_cpu, int32_t cpu_numthreads, bool load_allmodels);
         winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM voicevox_load_openjtalk_dict(hstring const& dpath);
         hstring voicevox_error_result_to_message(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& result_code);
-        winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM voicevox_tts(hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav);
-        winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM voicevox_tts_from_kana(hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav);
+        winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult voicevox_tts(hstring const& text, int64_t speaker_id);
+        winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult voicevox_tts_from_kana(hstring const& text, int64_t speaker_id);
         void voicevox_free_wav(int64_t wav);
         bool load_model(int64_t speaker_id);
         bool is_model_loaded(int64_t speaker_id);
@@ -46,6 +46,7 @@ namespace winrt::VOICEVOX_CS_WRT::implementation
         VOICEVOX_LOADMODEL __voicevox_loadmodel = nullptr;
         VOICEVOX_VOICEVOXTTSKANA __voicevox_tts_kana = nullptr;
         VOICEVOX_ISMODELLOADED __voicevox_is_model_loaded=nullptr;
+        std::string wstr_to_str(std::wstring str);
     };
 }
 namespace winrt::VOICEVOX_CS_WRT::factory_implementation

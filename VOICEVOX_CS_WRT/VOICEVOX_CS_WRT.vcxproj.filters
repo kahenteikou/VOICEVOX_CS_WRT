@@ -13,12 +13,14 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="VOICEVOX_Libraryplusplus.cpp" />
+    <ClCompile Include="VoiceVoxCore_SoundResult.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="VOICEVOX_Libraryplusplus.h" />
     <ClInclude Include="VoiceVoxCoreWrapper.g.h" />
+    <ClInclude Include="VoiceVoxCore_SoundResult.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="VoiceVoxCoreWrapper.idl" />

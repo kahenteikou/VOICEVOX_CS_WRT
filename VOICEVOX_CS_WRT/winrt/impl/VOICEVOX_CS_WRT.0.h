@@ -12,21 +12,33 @@ WINRT_EXPORT namespace winrt::VOICEVOX_CS_WRT
     };
     struct IVoiceVoxCoreWrapper;
     struct IVoiceVoxCoreWrapperFactory;
+    struct IVoiceVoxCore_SoundResult;
+    struct IVoiceVoxCore_SoundResultFactory;
     struct VoiceVoxCoreWrapper;
+    struct VoiceVoxCore_SoundResult;
 }
 namespace winrt::impl
 {
     template <> struct category<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper>{ using type = interface_category; };
     template <> struct category<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapperFactory>{ using type = interface_category; };
+    template <> struct category<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult>{ using type = interface_category; };
+    template <> struct category<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory>{ using type = interface_category; };
     template <> struct category<winrt::VOICEVOX_CS_WRT::VoiceVoxCoreWrapper>{ using type = class_category; };
+    template <> struct category<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult>{ using type = class_category; };
     template <> struct category<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM>{ using type = enum_category; };
     template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::VoiceVoxCoreWrapper> = L"VOICEVOX_CS_WRT.VoiceVoxCoreWrapper";
+    template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult> = L"VOICEVOX_CS_WRT.VoiceVoxCore_SoundResult";
     template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM> = L"VOICEVOX_CS_WRT.VoiceVoxResult_ENUM";
     template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper> = L"VOICEVOX_CS_WRT.IVoiceVoxCoreWrapper";
     template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapperFactory> = L"VOICEVOX_CS_WRT.IVoiceVoxCoreWrapperFactory";
-    template <> inline constexpr guid guid_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper>{ 0x9D9357BD,0x9CBC,0x501D,{ 0x92,0xD0,0x46,0xB3,0xAC,0xCA,0xB3,0xE5 } }; // 9D9357BD-9CBC-501D-92D0-46B3ACCAB3E5
+    template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult> = L"VOICEVOX_CS_WRT.IVoiceVoxCore_SoundResult";
+    template <> inline constexpr auto& name_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory> = L"VOICEVOX_CS_WRT.IVoiceVoxCore_SoundResultFactory";
+    template <> inline constexpr guid guid_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper>{ 0x29C4ED9A,0x2AFE,0x55A1,{ 0xBA,0x19,0x58,0x91,0x81,0x8B,0x16,0xA0 } }; // 29C4ED9A-2AFE-55A1-BA19-5891818B16A0
     template <> inline constexpr guid guid_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapperFactory>{ 0x8E158215,0xA7FE,0x5512,{ 0xBD,0x93,0x54,0x39,0x27,0x71,0x2C,0x9E } }; // 8E158215-A7FE-5512-BD93-543927712C9E
+    template <> inline constexpr guid guid_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult>{ 0xE75015D6,0xAC4F,0x515A,{ 0xBB,0xEC,0x63,0xC0,0xA2,0x1F,0x88,0x51 } }; // E75015D6-AC4F-515A-BBEC-63C0A21F8851
+    template <> inline constexpr guid guid_v<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory>{ 0xBD4C3118,0xDF0D,0x5B6A,{ 0xA7,0xBC,0xC4,0xD9,0x63,0x1A,0x77,0xA3 } }; // BD4C3118-DF0D-5B6A-A7BC-C4D9631A77A3
     template <> struct default_interface<winrt::VOICEVOX_CS_WRT::VoiceVoxCoreWrapper>{ using type = winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper; };
+    template <> struct default_interface<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult>{ using type = winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult; };
     template <> struct abi<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -34,8 +46,8 @@ namespace winrt::impl
             virtual int32_t __stdcall InitializeCore(bool, int32_t, bool, bool*) noexcept = 0;
             virtual int32_t __stdcall voicevox_load_openjtalk_dict(void*, int32_t*) noexcept = 0;
             virtual int32_t __stdcall voicevox_error_result_to_message(int32_t, void**) noexcept = 0;
-            virtual int32_t __stdcall voicevox_tts(void*, int64_t, int64_t, int64_t, int32_t*) noexcept = 0;
-            virtual int32_t __stdcall voicevox_tts_from_kana(void*, int64_t, int64_t, int64_t, int32_t*) noexcept = 0;
+            virtual int32_t __stdcall voicevox_tts(void*, int64_t, void**) noexcept = 0;
+            virtual int32_t __stdcall voicevox_tts_from_kana(void*, int64_t, void**) noexcept = 0;
             virtual int32_t __stdcall voicevox_free_wav(int64_t) noexcept = 0;
             virtual int32_t __stdcall load_model(int64_t, bool*) noexcept = 0;
             virtual int32_t __stdcall is_model_loaded(int64_t, bool*) noexcept = 0;
@@ -48,14 +60,33 @@ namespace winrt::impl
             virtual int32_t __stdcall CreateInstance(void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_RESULT_VALUE(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_RESULT_VALUE(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_OUTPUT_SIZE(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall put_OUTPUT_SIZE(int64_t) noexcept = 0;
+            virtual int32_t __stdcall get_OUTPUT_WAV_PTR(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall put_OUTPUT_WAV_PTR(int64_t) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateInstance(int32_t, int64_t, int64_t, void**) noexcept = 0;
+        };
+    };
     template <typename D>
     struct consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapper
     {
         auto InitializeCore(bool use_cpu, int32_t cpu_numthreads, bool load_allmodels) const;
         auto voicevox_load_openjtalk_dict(param::hstring const& dpath) const;
         auto voicevox_error_result_to_message(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& result_code) const;
-        auto voicevox_tts(param::hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav) const;
-        auto voicevox_tts_from_kana(param::hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav) const;
+        auto voicevox_tts(param::hstring const& text, int64_t speaker_id) const;
+        auto voicevox_tts_from_kana(param::hstring const& text, int64_t speaker_id) const;
         auto voicevox_free_wav(int64_t wav) const;
         auto load_model(int64_t speaker_id) const;
         auto is_model_loaded(int64_t speaker_id) const;
@@ -72,6 +103,29 @@ namespace winrt::impl
     template <> struct consume<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapperFactory>
     {
         template <typename D> using type = consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapperFactory<D>;
+    };
+    template <typename D>
+    struct consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult
+    {
+        [[nodiscard]] auto RESULT_VALUE() const;
+        auto RESULT_VALUE(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& value) const;
+        [[nodiscard]] auto OUTPUT_SIZE() const;
+        auto OUTPUT_SIZE(int64_t value) const;
+        [[nodiscard]] auto OUTPUT_WAV_PTR() const;
+        auto OUTPUT_WAV_PTR(int64_t value) const;
+    };
+    template <> struct consume<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult>
+    {
+        template <typename D> using type = consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>;
+    };
+    template <typename D>
+    struct consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResultFactory
+    {
+        auto CreateInstance(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& result_v, int64_t out_size, int64_t out_wav_ptr) const;
+    };
+    template <> struct consume<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory>
+    {
+        template <typename D> using type = consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResultFactory<D>;
     };
 }
 #endif

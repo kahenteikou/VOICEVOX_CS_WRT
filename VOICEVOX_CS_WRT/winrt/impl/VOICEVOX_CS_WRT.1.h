@@ -20,5 +20,19 @@ WINRT_EXPORT namespace winrt::VOICEVOX_CS_WRT
         IVoiceVoxCoreWrapperFactory(std::nullptr_t = nullptr) noexcept {}
         IVoiceVoxCoreWrapperFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IVoiceVoxCore_SoundResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IVoiceVoxCore_SoundResult>
+    {
+        IVoiceVoxCore_SoundResult(std::nullptr_t = nullptr) noexcept {}
+        IVoiceVoxCore_SoundResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IVoiceVoxCore_SoundResultFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IVoiceVoxCore_SoundResultFactory>
+    {
+        IVoiceVoxCore_SoundResultFactory(std::nullptr_t = nullptr) noexcept {}
+        IVoiceVoxCore_SoundResultFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

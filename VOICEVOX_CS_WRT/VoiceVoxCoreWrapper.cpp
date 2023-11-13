@@ -50,27 +50,61 @@ namespace winrt::VOICEVOX_CS_WRT::implementation
     }
     winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM VoiceVoxCoreWrapper::voicevox_load_openjtalk_dict(hstring const& dpath)
     {
-        throw hresult_not_implemented();
+        //throw hresult_not_implemented();
+        if (__voicevox_load_openjtalk_dict) {
+            VoiceVoxResultenum retv = __voicevox_load_openjtalk_dict(wstr_to_str(dpath.c_str()).c_str());
+            if (retv == VoiceVoxResultenum::SUCCEED) {
+                return VoiceVoxResult_ENUM::SUCCEED;
+            }
+            else {
+                return VoiceVoxResult_ENUM::NOT_LOADED_OPENJTALK_DICT;
+            }
+        }
+        else {
+            return VoiceVoxResult_ENUM::NOT_LOADED_OPENJTALK_DICT;
+        }
     }
     hstring VoiceVoxCoreWrapper::voicevox_error_result_to_message(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& result_code)
     {
         throw hresult_not_implemented();
     }
-    winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM VoiceVoxCoreWrapper::voicevox_tts(hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav)
+    winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult VoiceVoxCoreWrapper::voicevox_tts(hstring const& text, int64_t speaker_id)
     {
-        throw hresult_not_implemented();
+        //throw hresult_not_implemented();
+        int output_bin_size = 0;
+        uint8_t* output_wav = nullptr;
+        VoiceVoxResult_ENUM ret;
+        //VoiceVoxCore_SoundResult return_val=new V;
+        if (__voicevox_tts) {
+            ret = (VoiceVoxResult_ENUM)(__voicevox_tts(wstr_to_str(text.c_str()).c_str(), speaker_id, &output_bin_size, &output_wav));
+            return VoiceVoxCore_SoundResult(ret, output_bin_size, (int64_t)(output_wav));
+        }
+        else {
+            //ret = VoiceVoxResult_ENUM::NOT_LOADED_OPENJTALK_DICT;
+            VoiceVoxCore_SoundResult return_val = VoiceVoxCore_SoundResult(VoiceVoxResult_ENUM::NOT_LOADED_OPENJTALK_DICT, 0, 0);
+            return return_val;
+        }
+
     }
-    winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM VoiceVoxCoreWrapper::voicevox_tts_from_kana(hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav)
+    winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult VoiceVoxCoreWrapper::voicevox_tts_from_kana(hstring const& text, int64_t speaker_id)
     {
         throw hresult_not_implemented();
     }
     void VoiceVoxCoreWrapper::voicevox_free_wav(int64_t wav)
     {
-        throw hresult_not_implemented();
+        //throw hresult_not_implemented();
+        if (__voicevox_wav_free)
+            __voicevox_wav_free((uint8_t*)wav);
     }
     bool VoiceVoxCoreWrapper::load_model(int64_t speaker_id)
     {
-        throw hresult_not_implemented();
+        //throw hresult_not_implemented();
+        if (__voicevox_loadmodel) {
+            return __voicevox_loadmodel(speaker_id);
+        }
+        else {
+            return false;
+        }
     }
     bool VoiceVoxCoreWrapper::is_model_loaded(int64_t speaker_id)
     {
@@ -78,6 +112,16 @@ namespace winrt::VOICEVOX_CS_WRT::implementation
     }
     void VoiceVoxCoreWrapper::Close()
     {
-        throw hresult_not_implemented();
+        FreeLibrary(_hmod);
+        std::cout << "Free library" << std::endl;
+    }
+    std::string VoiceVoxCoreWrapper::wstr_to_str(std::wstring str) {
+        int bufS = WideCharToMultiByte(CP_UTF8, 0, str.c_str(),
+            -1, nullptr, 0, nullptr, nullptr);
+        char* utf8_buf = new char[bufS];
+        WideCharToMultiByte(CP_UTF8, 0, str.c_str(), -1, utf8_buf, bufS, nullptr, nullptr);
+        std::string retStr(utf8_buf, utf8_buf + bufS - 1);
+        delete[] utf8_buf;
+        return retStr;
     }
 }

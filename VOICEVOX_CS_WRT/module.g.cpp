@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "winrt/base.h"
 void* winrt_make_VOICEVOX_CS_WRT_VoiceVoxCoreWrapper();
+void* winrt_make_VOICEVOX_CS_WRT_VoiceVoxCore_SoundResult();
 
 bool __stdcall winrt_can_unload_now() noexcept
 {
@@ -25,6 +26,11 @@ void* __stdcall winrt_get_activation_factory([[maybe_unused]] std::wstring_view 
     if (requal(name, L"VOICEVOX_CS_WRT.VoiceVoxCoreWrapper"))
     {
         return winrt_make_VOICEVOX_CS_WRT_VoiceVoxCoreWrapper();
+    }
+
+    if (requal(name, L"VOICEVOX_CS_WRT.VoiceVoxCore_SoundResult"))
+    {
+        return winrt_make_VOICEVOX_CS_WRT_VoiceVoxCore_SoundResult();
     }
 
     return nullptr;

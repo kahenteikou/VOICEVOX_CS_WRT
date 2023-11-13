@@ -28,17 +28,17 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper)->voicevox_error_result_to_message(static_cast<int32_t>(result_code), &result));
         return hstring{ result, take_ownership_from_abi };
     }
-    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapper<D>::voicevox_tts(param::hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav) const
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapper<D>::voicevox_tts(param::hstring const& text, int64_t speaker_id) const
     {
-        winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper)->voicevox_tts(*(void**)(&text), speaker_id, output_binary_size, output_wav, reinterpret_cast<int32_t*>(&result)));
-        return result;
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper)->voicevox_tts(*(void**)(&text), speaker_id, &result));
+        return winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult{ result, take_ownership_from_abi };
     }
-    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapper<D>::voicevox_tts_from_kana(param::hstring const& text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav) const
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapper<D>::voicevox_tts_from_kana(param::hstring const& text, int64_t speaker_id) const
     {
-        winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper)->voicevox_tts_from_kana(*(void**)(&text), speaker_id, output_binary_size, output_wav, reinterpret_cast<int32_t*>(&result)));
-        return result;
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper)->voicevox_tts_from_kana(*(void**)(&text), speaker_id, &result));
+        return winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult{ result, take_ownership_from_abi };
     }
     template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCoreWrapper<D>::voicevox_free_wav(int64_t wav) const
     {
@@ -61,6 +61,42 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapperFactory)->CreateInstance(*(void**)(&coredll_path), &value));
         return winrt::VOICEVOX_CS_WRT::VoiceVoxCoreWrapper{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>::RESULT_VALUE() const
+    {
+        winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult)->get_RESULT_VALUE(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>::RESULT_VALUE(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult)->put_RESULT_VALUE(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>::OUTPUT_SIZE() const
+    {
+        int64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult)->get_OUTPUT_SIZE(&value));
+        return value;
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>::OUTPUT_SIZE(int64_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult)->put_OUTPUT_SIZE(value));
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>::OUTPUT_WAV_PTR() const
+    {
+        int64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult)->get_OUTPUT_WAV_PTR(&value));
+        return value;
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResult<D>::OUTPUT_WAV_PTR(int64_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult)->put_OUTPUT_WAV_PTR(value));
+    }
+    template <typename D> auto consume_VOICEVOX_CS_WRT_IVoiceVoxCore_SoundResultFactory<D>::CreateInstance(winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const& result_v, int64_t out_size, int64_t out_wav_ptr) const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory)->CreateInstance(static_cast<int32_t>(result_v), out_size, out_wav_ptr, &value));
+        return winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult{ value, take_ownership_from_abi };
     }
     template <typename D>
     struct produce<D, winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper> : produce_base<D, winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper>
@@ -87,17 +123,19 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall voicevox_tts(void* text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav, int32_t* result) noexcept final try
+        int32_t __stdcall voicevox_tts(void* text, int64_t speaker_id, void** result) noexcept final try
         {
+            clear_abi(result);
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM>(this->shim().voicevox_tts(*reinterpret_cast<hstring const*>(&text), speaker_id, output_binary_size, output_wav));
+            *result = detach_from<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult>(this->shim().voicevox_tts(*reinterpret_cast<hstring const*>(&text), speaker_id));
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall voicevox_tts_from_kana(void* text, int64_t speaker_id, int64_t output_binary_size, int64_t output_wav, int32_t* result) noexcept final try
+        int32_t __stdcall voicevox_tts_from_kana(void* text, int64_t speaker_id, void** result) noexcept final try
         {
+            clear_abi(result);
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM>(this->shim().voicevox_tts_from_kana(*reinterpret_cast<hstring const*>(&text), speaker_id, output_binary_size, output_wav));
+            *result = detach_from<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult>(this->shim().voicevox_tts_from_kana(*reinterpret_cast<hstring const*>(&text), speaker_id));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -135,6 +173,64 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+    template <typename D>
+    struct produce<D, winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult> : produce_base<D, winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult>
+    {
+        int32_t __stdcall get_RESULT_VALUE(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM>(this->shim().RESULT_VALUE());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_RESULT_VALUE(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RESULT_VALUE(*reinterpret_cast<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OUTPUT_SIZE(int64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<int64_t>(this->shim().OUTPUT_SIZE());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_OUTPUT_SIZE(int64_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().OUTPUT_SIZE(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OUTPUT_WAV_PTR(int64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<int64_t>(this->shim().OUTPUT_WAV_PTR());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_OUTPUT_WAV_PTR(int64_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().OUTPUT_WAV_PTR(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory> : produce_base<D, winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory>
+    {
+        int32_t __stdcall CreateInstance(int32_t result_v, int64_t out_size, int64_t out_wav_ptr, void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult>(this->shim().CreateInstance(*reinterpret_cast<winrt::VOICEVOX_CS_WRT::VoiceVoxResult_ENUM const*>(&result_v), out_size, out_wav_ptr));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
 }
 WINRT_EXPORT namespace winrt::VOICEVOX_CS_WRT
 {
@@ -144,7 +240,10 @@ namespace std
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapper> : winrt::impl::hash_base {};
     template<> struct hash<winrt::VOICEVOX_CS_WRT::IVoiceVoxCoreWrapperFactory> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::VOICEVOX_CS_WRT::IVoiceVoxCore_SoundResultFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::VOICEVOX_CS_WRT::VoiceVoxCoreWrapper> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::VOICEVOX_CS_WRT::VoiceVoxCore_SoundResult> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format
 #endif

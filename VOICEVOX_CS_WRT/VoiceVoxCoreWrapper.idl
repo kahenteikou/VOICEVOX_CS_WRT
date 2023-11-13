@@ -7,11 +7,17 @@ namespace VOICEVOX_CS_WRT
         Boolean InitializeCore(Boolean use_cpu, Int32 cpu_numthreads, Boolean load_allmodels);
         VoiceVoxResult_ENUM voicevox_load_openjtalk_dict(String dpath);
         String voicevox_error_result_to_message(VoiceVoxResult_ENUM result_code);
-        VoiceVoxResult_ENUM voicevox_tts(String text, Int64 speaker_id, Int64 output_binary_size, Int64 output_wav);
-        VoiceVoxResult_ENUM voicevox_tts_from_kana(String text, Int64 speaker_id, Int64 output_binary_size, Int64 output_wav);
+        VoiceVoxCore_SoundResult voicevox_tts(String text, Int64 speaker_id);
+        VoiceVoxCore_SoundResult voicevox_tts_from_kana(String text, Int64 speaker_id);
         void voicevox_free_wav(Int64 wav);
         Boolean load_model(Int64 speaker_id);
         Boolean is_model_loaded(Int64 speaker_id);
+    }
+    runtimeclass VoiceVoxCore_SoundResult{
+        VoiceVoxResult_ENUM RESULT_VALUE;
+        Int64 OUTPUT_SIZE;
+        Int64 OUTPUT_WAV_PTR;
+        VoiceVoxCore_SoundResult(VoiceVoxResult_ENUM result_v,Int64 out_size, Int64 out_wav_ptr);
     }
     enum VoiceVoxResult_ENUM {
 

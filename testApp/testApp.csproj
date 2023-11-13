@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,6 +12,10 @@
       ../VOICEVOX_CS_WRTProjection/nuget
     </RestoreSources>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Extensions" Version="7.0.0" />
+    <PackageReference Include="VOICEVOX_CS_WRT" Version="0.0.1-prerelease" />
+  </ItemGroup>
 
 
 </Project>

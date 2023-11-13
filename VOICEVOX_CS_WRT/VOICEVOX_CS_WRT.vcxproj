@@ -127,6 +127,7 @@
     <ClInclude Include="VoiceVoxCoreWrapper.h">
       <DependentUpon>VoiceVoxCoreWrapper.idl</DependentUpon>
     </ClInclude>
+    <ClInclude Include="VoiceVoxCore_SoundResult.h" />
     <ClInclude Include="VOICEVOX_Libraryplusplus.h" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,7 @@
       <DependentUpon>VoiceVoxCoreWrapper.idl</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="VoiceVoxCore_SoundResult.cpp" />
     <ClCompile Include="VOICEVOX_Libraryplusplus.cpp" />
   </ItemGroup>
   <ItemGroup>
