@@ -101,7 +101,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
       <ModuleDefinitionFile>VOICEVOX_CS_WRT.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
